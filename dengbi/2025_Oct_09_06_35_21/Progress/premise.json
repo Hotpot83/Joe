@@ -1,0 +1,101 @@
+{
+  "induction n with\n  | zero =>\n    contradiction\n  | succ n ih =>\n    match n with\n    | 0 =>\n      have h1: a 1 = 1 := by simp[a]\n      have h2: S 1= 1 := by simp[S]\n      have h3: S 2= 4:=by\n        have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S]\n        linarith\n      have h5 : a 2=3 :=by\n        have h6: a 2= S 2 - S 1 := by simp[a]\n        linarith\n      rw[h1]\n      rw[h5]\n      norm_num\n    | m+1 =>\n      have h7:a (m+1+1+1)= S (m+1+1+1) - S (m+1+1) :=rfl\n      have h8:a (m+1+1)= S (m+1+1)- S (m+1):=rfl\n      rw[h7]\n      rw[h8]\n      have h9: S (m+1+1+1) = 2* S (m+1+1) + m+1+1 +1 := by\n        simp [S]\n        linarith\n      have h10: S (m+1+1) = 2* S (m+1) + m+1 +1 := by\n        simp [S]\n        linarith\n      have h11:S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1= S (m+1+1) +m +4 :=by\n        simp[S]\n        linarith\n      rw[h11]\n      have h12: S (m+1+1) +m +4 = 2* S (m+1) + 2*m +6 := by\n        simp[S]\n        linarith\n      rw[h12]\n      have h13: S (m + 1 + 1) - S (m + 1) + 1 = S (m+1) +m + 3:= by\n        simp[S]\n        linarith\n      rw[h13]\n      have h14: 2* S (m+1) + 2*m +6 = 2*(S (m+1) +m + 3):=by linarith\n      rw[h14]\n      have h15: S (m+1) +m + 3≠ 0:=by\n        have h16: S (m+1) ≥0 :=by\n          have h17: 0≤m + 1:=by\n            linarith\n          exact S_zero (m+1) h17\n        linarith\n      field_simp [h15 ] ": [
+    "S : A function that assigns a real number to each natural number.",
+    "a : A function that maps each natural number to a real number.",
+    "S_zero : For every natural number, the function assigns a value that is greater than or equal to zero."
+  ],
+  " contradiction ": [],
+  "have h1: a 1 = 1 := by simp[a ] ": [
+    "a : A function that maps each natural number to a real number."
+  ],
+  "simp[a ] ": [
+    "a : A function that maps each natural number to a real number.",
+    "S : A function that assigns a real number to each natural number.",
+    "a : A function that maps each natural number to a real number."
+  ],
+  "have h2: S 1= 1 := by simp[S ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "simp[S ] ": [
+    "S : A function that assigns a real number to each natural number.",
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h3: S 2= 4:=by\n        have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S]\n         linarith ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  " linarith ": [],
+  "have h5 : a 2=3 :=by\n        have h6: a 2= S 2 - S 1 := by simp[a]\n         linarith ": [
+    "S : A function that assigns a real number to each natural number.",
+    "a : A function that maps each natural number to a real number."
+  ],
+  "have h6: a 2= S 2 - S 1 := by simp[a ] ": [
+    "S : A function that assigns a real number to each natural number.",
+    "a : A function that maps each natural number to a real number."
+  ],
+  "rw[h1 ] ": [],
+  "rw[h5 ] ": [],
+  " norm_num ": [],
+  "have h7:a (m+1+1+1)= S (m+1+1+1) - S (m+1+1) := rfl ": [
+    "S : A function that assigns a real number to each natural number.",
+    "rfl : An element is equal to itself, with an implicit argument allowing for broader applications of this concept."
+  ],
+  "have h8:a (m+1+1)= S (m+1+1)- S (m+1):= rfl ": [
+    "S : A function that assigns a real number to each natural number.",
+    "rfl : An element is equal to itself, with an implicit argument allowing for broader applications of this concept."
+  ],
+  "rw[h7 ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "rw[h8 ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h9: S (m+1+1+1) = 2* S (m+1+1) + m+1+1 +1 := by\n        simp [S]\n         linarith ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "simp [S ] ": [
+    "S : A function that assigns a real number to each natural number.",
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h10: S (m+1+1) = 2* S (m+1) + m+1 +1 := by\n        simp [S]\n         linarith ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h11:S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1= S (m+1+1) +m +4 :=by\n        simp[S]\n         linarith ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "rw[h11 ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h12: S (m+1+1) +m +4 = 2* S (m+1) + 2*m +6 := by\n        simp[S]\n         linarith ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "rw[h12 ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h13: S (m + 1 + 1) - S (m + 1) + 1 = S (m+1) +m + 3:= by\n        simp[S]\n         linarith ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "rw[h13 ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h14: 2* S (m+1) + 2*m +6 = 2*(S (m+1) +m + 3):=by  linarith ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "rw[h14 ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h15: S (m+1) +m + 3≠ 0:=by\n        have h16: S (m+1) ≥0 :=by\n          have h17: 0≤m + 1:=by\n            linarith\n          exact S_zero (m+1) h17\n         linarith ": [
+    "S : A function that assigns a real number to each natural number.",
+    "S_zero : For every natural number, the function assigns a value that is greater than or equal to zero."
+  ],
+  "have h16: S (m+1) ≥0 :=by\n          have h17: 0≤m + 1:=by\n            linarith\n          exact S_zero (m+1)  h17 ": [
+    "S : A function that assigns a real number to each natural number.",
+    "S_zero : For every natural number, the function assigns a value that is greater than or equal to zero."
+  ],
+  "have h17: 0≤m + 1:=by\n             linarith ": [],
+  "exact S_zero (m+1)  h17 ": [
+    "S_zero : For every natural number, the function assigns a value that is greater than or equal to zero."
+  ]
+}

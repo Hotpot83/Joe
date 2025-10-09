@@ -1,0 +1,639 @@
+[
+  {
+    "AppliedTactic": "induction n with\n  | zero =>\n    contradiction\n  | succ n ih =>\n    match n with\n    | 0 =>\n      have h1: a 1 = 1 := by simp[a]\n      have h2: S 1= 1 := by simp[S]\n      have h3: S 2= 4:=by\n        have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S]\n        linarith\n      have h5 : a 2=3 :=by\n        have h6: a 2= S 2 - S 1 := by simp[a]\n        linarith\n      rw[h1]\n      rw[h5]\n      norm_num\n    | m+1 =>\n      have h7:a (m+1+1+1)= S (m+1+1+1) - S (m+1+1) :=rfl\n      have h8:a (m+1+1)= S (m+1+1)- S (m+1):=rfl\n      rw[h7]\n      rw[h8]\n      have h9: S (m+1+1+1) = 2* S (m+1+1) + m+1+1 +1 := by\n        simp [S]\n        linarith\n      have h10: S (m+1+1) = 2* S (m+1) + m+1 +1 := by\n        simp [S]\n        linarith\n      have h11:S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1= S (m+1+1) +m +4 :=by\n        simp[S]\n        linarith\n      rw[h11]\n      have h12: S (m+1+1) +m +4 = 2* S (m+1) + 2*m +6 := by\n        simp[S]\n        linarith\n      rw[h12]\n      have h13: S (m + 1 + 1) - S (m + 1) + 1 = S (m+1) +m + 3:= by\n        simp[S]\n        linarith\n      rw[h13]\n      have h14: 2* S (m+1) + 2*m +6 = 2*(S (m+1) +m + 3):=by linarith\n      rw[h14]\n      have h15: S (m+1) +m + 3≠ 0:=by\n        have h16: S (m+1) ≥0 :=by\n          have h17: 0≤m + 1:=by\n            linarith\n          exact S_zero (m+1) h17\n        linarith\n      field_simp [h15 ] ",
+    "GoalsBefore": "n :  ℕ\nhn :  1 ≤ n\n⊢ (a (n + 1) + 1) / (a n + 1) = 2",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "a : A function that maps each natural number to a real number.",
+      "S_zero : For every natural number, the function assigns a value that is greater than or equal to zero."
+    ],
+    "Template": "Prove [goalsBefore] with mathematical induction on [existingVariable].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[existingVariable]": "This token appears in templates for tactic  that reference existing variables. Replace it with the name of the existing variable referenced in the tactic."
+    },
+    "Result": "Prove that the given ratio involving the function \\( a \\) equals 2 for all natural numbers \\( n \\) greater than or equal to 1 by using mathematical induction on \\( n \\)."
+  },
+  {
+    "AppliedTactic": " contradiction ",
+    "GoalsBefore": "case zero\nhn :  1 ≤ 0\n⊢ (a (0 + 1) + 1) / (a 0 + 1) = 2",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the inequality \\(1 \\leq 0\\) cannot hold, this leads to a contradiction. Therefore, we complete the proof."
+  },
+  {
+    "AppliedTactic": "have h1: a 1 = 1 := by simp[a ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GoalsAfter": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GivenPremises": [
+      "a : A function that maps each natural number to a real number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the value of the function \\( a \\) at 1 is equal to 1."
+  },
+  {
+    "AppliedTactic": "simp[a ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\n⊢ a 1 = 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "a : A function that maps each natural number to a real number.",
+      "a : A function that maps each natural number to a real number."
+    ],
+    "Template": "[goalsBefore] is proved straightforward.",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied."
+    },
+    "Result": "The statement that the value of the function \\(a\\) at 1 is equal to 1 is proved straightforward."
+  },
+  {
+    "AppliedTactic": "have h2: S 1= 1 := by simp[S ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GoalsAfter": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the value assigned by the function \\( S \\) at 1 is equal to 1."
+  },
+  {
+    "AppliedTactic": "simp[S ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\n⊢ S 1 = 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "[goalsBefore] is proved straightforward.",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied."
+    },
+    "Result": "The statement that the value of the function \\( S \\) at 1 equals 1 is proved straightforward."
+  },
+  {
+    "AppliedTactic": "have h3: S 2= 4:=by\n        have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S]\n         linarith ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GoalsAfter": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the value assigned by the function \\( S \\) at 2 is equal to 4."
+  },
+  {
+    "AppliedTactic": "have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\n⊢ S 2 = 4",
+    "GoalsAfter": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh4 :  S 2 = 2 * S 1 + 1 + 1\n⊢ S 2 = 4",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that \\( S(2) = 2 \\times S(1) + 1 + 1 \\)."
+  },
+  {
+    "AppliedTactic": "simp[S ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\n⊢ S 2 = 2 * S 1 + 1 + 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "[goalsBefore] is proved straightforward.",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied."
+    },
+    "Result": "The equality expressing the value of the function at 2 in terms of its value at 1 is proved straightforward."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh4 :  S 2 = 2 * S 1 + 1 + 1\n⊢ S 2 = 4",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the assumptions imply that \\( S_2 = 2 \\times S_1 + 1 + 1 \\) and \\( S_2 = 4 \\), and given \\( S_1 = 1 \\), these conditions together confirm that \\( S_2 = 4 \\), thereby completing the proof."
+  },
+  {
+    "AppliedTactic": "have h5 : a 2=3 :=by\n        have h6: a 2= S 2 - S 1 := by simp[a]\n         linarith ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GoalsAfter": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\nh5 :  a 2 = 3\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "a : A function that maps each natural number to a real number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the value of the function at 2 is equal to 3."
+  },
+  {
+    "AppliedTactic": "have h6: a 2= S 2 - S 1 := by simp[a ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\n⊢ a 2 = 3",
+    "GoalsAfter": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\nh6 :  a 2 = S 2 - S 1\n⊢ a 2 = 3",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "a : A function that maps each natural number to a real number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the value of the function \\( a \\) at 2 equals the difference between the values of the function \\( S \\) at 2 and 1."
+  },
+  {
+    "AppliedTactic": "simp[a ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\n⊢ a 2 = S 2 - S 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "a : A function that maps each natural number to a real number.",
+      "S : A function that assigns a real number to each natural number.",
+      "a : A function that maps each natural number to a real number."
+    ],
+    "Template": "[goalsBefore] is proved straightforward.",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied."
+    },
+    "Result": "The equality stating that the value of the function at 2 equals the difference between the values of the second and first terms of the sequence is proved straightforward."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\nh6 :  a 2 = S 2 - S 1\n⊢ a 2 = 3",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the assumptions imply \\( a_2 = 3 \\) and the given definitions and equalities confirm this value, the goal is achieved and the proof is complete."
+  },
+  {
+    "AppliedTactic": "rw[h1 ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\nh5 :  a 2 = 3\n⊢ (a (0 + 1 + 1) + 1) / (a (0 + 1) + 1) = 2",
+    "GoalsAfter": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\nh5 :  a 2 = 3\n⊢ (a (0 + 1 + 1) + 1) / (1 + 1) = 2",
+    "GivenPremises": [],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the assumption that the value of the function \\( a \\) at 1 is 1, the goal of proving that the ratio \\(\\frac{a(0 + 1 + 1) + 1}{a(0 + 1) + 1}\\) equals 2 becomes the goal of proving that the ratio \\(\\frac{a(0 + 1 + 1) + 1}{1 + 1}\\) equals 2."
+  },
+  {
+    "AppliedTactic": "rw[h5 ] ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\nh5 :  a 2 = 3\n⊢ (a (0 + 1 + 1) + 1) / (1 + 1) = 2",
+    "GoalsAfter": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\nh5 :  a 2 = 3\n⊢ (3 + 1) / (1 + 1) = 2",
+    "GivenPremises": [],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the assumption that the value of the function at 2 is 3, the goal of proving that the fraction with numerator \\( a(0+1+1) + 1 \\) and denominator \\( 1 + 1 \\) equals 2 becomes the goal of proving that the fraction with numerator \\( 3 + 1 \\) and denominator \\( 1 + 1 \\) equals 2."
+  },
+  {
+    "AppliedTactic": " norm_num ",
+    "GoalsBefore": "n :  ℕ\nih :  1 ≤ 0 → (a (0 + 1) + 1) / (a 0 + 1) = 2\nhn :  1 ≤ 0 + 1\nh1 :  a 1 = 1\nh2 :  S 1 = 1\nh3 :  S 2 = 4\nh5 :  a 2 = 3\n⊢ (3 + 1) / (1 + 1) = 2",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "It is clear that [goalsBefore].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied."
+    },
+    "Result": "It is clear that \\(\\frac{3 + 1}{1 + 1} = 2\\)."
+  },
+  {
+    "AppliedTactic": "have h7:a (m+1+1+1)= S (m+1+1+1) - S (m+1+1) := rfl ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\n⊢ (a (m + 1 + 1 + 1) + 1) / (a (m + 1 + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\n⊢ (a (m + 1 + 1 + 1) + 1) / (a (m + 1 + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "rfl : An element is equal to itself, with an implicit argument allowing for broader applications of this concept."
+    ],
+    "Template": "Show that [statement]. This can be proved by [proof].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic.",
+      "[proof]": "This token appears in templates for a tactic that simultaneously provides a proposition (subgoal) to be proven and its proof. Replace it with a explanation of a proof to the relevant proof by checking the Applied Tactic. Additionally, if any theorems listed in Using Definitions and Theorems are used, be sure to include an explanation or a mathematical reference of those theorems in the text. If multiple theorems are used, include explanations for all of them."
+    },
+    "Result": "Show that the value of the function \\( a \\) at \\( m+3 \\) is equal to the difference between the function \\( S \\) evaluated at \\( m+3 \\) and at \\( m+2 \\). This follows directly from the definition of equality, as the expression is true by reflexivity."
+  },
+  {
+    "AppliedTactic": "have h8:a (m+1+1)= S (m+1+1)- S (m+1):= rfl ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\n⊢ (a (m + 1 + 1 + 1) + 1) / (a (m + 1 + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ (a (m + 1 + 1 + 1) + 1) / (a (m + 1 + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "rfl : An element is equal to itself, with an implicit argument allowing for broader applications of this concept."
+    ],
+    "Template": "Show that [statement]. This can be proved by [proof].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic.",
+      "[proof]": "This token appears in templates for a tactic that simultaneously provides a proposition (subgoal) to be proven and its proof. Replace it with a explanation of a proof to the relevant proof by checking the Applied Tactic. Additionally, if any theorems listed in Using Definitions and Theorems are used, be sure to include an explanation or a mathematical reference of those theorems in the text. If multiple theorems are used, include explanations for all of them."
+    },
+    "Result": "Show that the value of \\( a \\) at \\( m+1+1 \\) is equal to the difference between the function \\( S \\) evaluated at \\( m+1+1 \\) and at \\( m+1 \\). This follows directly from the definition of equality, as the two sides are identical by construction."
+  },
+  {
+    "AppliedTactic": "rw[h7 ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ (a (m + 1 + 1 + 1) + 1) / (a (m + 1 + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (a (m + 1 + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the assumption that the value of the function at \\( m + 1 + 1 + 1 \\) equals the difference between the values of \\( S \\) at \\( m + 1 + 1 + 1 \\) and \\( m + 1 + 1 \\), the goal of proving that the ratio of the function at \\( m + 1 + 1 + 1 \\) plus one to the function at \\( m + 1 + 1 \\) plus one equals two becomes the goal of proving that the ratio of the difference between \\( S \\) at \\( m + 1 + 1 + 1 \\) and \\( m + 1 + 1 \\) plus one to the function at \\( m + 1 + 1 \\) plus one equals two."
+  },
+  {
+    "AppliedTactic": "rw[h8 ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (a (m + 1 + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the assumption that the value of the function \\( a \\) at \\( m + 2 \\) equals the difference between the values of the function \\( S \\) at \\( m + 2 \\) and \\( m + 1 \\), the goal of proving the fraction with numerator \\( S(m + 3) - S(m + 2) + 1 \\) and denominator \\( a(m + 2) + 1 \\) equals 2 becomes the goal of proving the fraction with numerator \\( S(m + 3) - S(m + 2) + 1 \\) and denominator \\( S(m + 2) - S(m + 1) + 1 \\) equals 2."
+  },
+  {
+    "AppliedTactic": "have h9: S (m+1+1+1) = 2* S (m+1+1) + m+1+1 +1 := by\n        simp [S]\n         linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that \\( S(m + 1 + 1 + 1) = 2 \\times S(m + 1 + 1) + m + 1 + 1 + 1 \\)."
+  },
+  {
+    "AppliedTactic": "simp [S ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ 2 * (2 * S (m + 1) + (↑m + 1) + 1) + (↑m + 2) = 2 * (2 * S (m + 1) + (↑m + 1) + 1) + ↑m + 1 + 1",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By simplifying the expression, [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By simplifying the expression, the goal of proving that the value of the function \\( S \\) at \\( m + 3 \\) equals twice the value of \\( S \\) at \\( m + 2 \\) plus \\( m + 3 \\) is transformed into proving that twice the quantity of twice the value of \\( S \\) at \\( m + 1 \\) plus \\( m + 2 \\) equals itself plus \\( m + 3 \\)."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\n⊢ 2 * (2 * S (m + 1) + (↑m + 1) + 1) + (↑m + 2) = 2 * (2 * S (m + 1) + (↑m + 1) + 1) + ↑m + 1 + 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the expressions \\( 2 \\times (2 \\times S(m + 1) + (m + 1) + 1) + (m + 2) \\) and \\( 2 \\times (2 \\times S(m + 1) + (m + 1) + 1) + m + 1 + 1 \\) are equal, the equality holds and the proof is complete."
+  },
+  {
+    "AppliedTactic": "have h10: S (m+1+1) = 2* S (m+1) + m+1 +1 := by\n        simp [S]\n         linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the value of the function \\( S \\) at \\( m + 2 \\) equals twice the value of \\( S \\) at \\( m + 1 \\) plus \\( m + 2 \\)."
+  },
+  {
+    "AppliedTactic": "simp [S ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\n⊢ S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\n⊢ 2 * S (m + 1) + (↑m + 1) = 2 * S (m + 1) + ↑m + 1",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By simplifying the expression, [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By simplifying the expression, the goal of proving that the value assigned by the function \\( S \\) at \\( m + 2 \\) equals twice the value assigned by \\( S \\) at \\( m + 1 \\) plus \\( m + 2 \\) is transformed into proving that twice the value assigned by \\( S \\) at \\( m + 1 \\) plus \\( m + 1 \\) equals twice the value assigned by \\( S \\) at \\( m + 1 \\) plus \\( m + 1 \\)."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\n⊢ 2 * S (m + 1) + (↑m + 1) = 2 * S (m + 1) + ↑m + 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the equality \\( 2 \\cdot S(m + 1) + (m + 1) = 2 \\cdot S(m + 1) + (m + 1) \\) must hold, the proof is complete."
+  },
+  {
+    "AppliedTactic": "have h11:S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1= S (m+1+1) +m +4 :=by\n        simp[S]\n         linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the expression obtained by subtracting the value assigned to \\( m + 1 + 1 \\) from the value assigned to \\( m + 1 + 1 + 1 \\), then adding 1, equals the value assigned to \\( m + 1 + 1 \\) plus \\( m \\) plus 4."
+  },
+  {
+    "AppliedTactic": "simp[S ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\n⊢ S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\n⊢ 2 * (2 * S (m + 1) + (↑m + 1) + 1) + (↑m + 2) - (2 * S (m + 1) + (↑m + 1)) + 1 = 2 * S (m + 1) + (↑m + 1) + 1 + ↑m + 4",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By simplifying the expression, [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By simplifying the expression, proving that the difference between the values of the function \\( S \\) at \\( m+3 \\) and \\( m+2 \\) plus one equals the value of \\( S \\) at \\( m+2 \\) plus \\( m+4 \\) is transformed into proving a more explicit arithmetic expression involving multiples and sums of values of \\( S \\) at \\( m+1 \\) and \\( m+2 \\) along with linear terms in \\( m \\)."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\n⊢ 2 * (2 * S (m + 1) + (↑m + 1) + 1) + (↑m + 2) - (2 * S (m + 1) + (↑m + 1)) + 1 = 2 * S (m + 1) + (↑m + 1) + 1 + ↑m + 4",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "The equality involving the expressions with \\( S(m+1) \\) and \\( m \\) cannot be satisfied as stated, so the proof is complete."
+  },
+  {
+    "AppliedTactic": "rw[h11 ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\n⊢ (S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\n⊢ (S (m + 1 + 1) + ↑m + 4) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the assumption that the expression \\( S(m + 1 + 1 + 1) - S(m + 1 + 1) + 1 \\) equals \\( S(m + 1 + 1) + m + 4 \\), the goal of proving that the ratio of \\( S(m + 1 + 1 + 1) - S(m + 1 + 1) + 1 \\) to \\( S(m + 1 + 1) - S(m + 1) + 1 \\) equals 2 becomes the goal of proving that the ratio of \\( S(m + 1 + 1) + m + 4 \\) to \\( S(m + 1 + 1) - S(m + 1) + 1 \\) equals 2."
+  },
+  {
+    "AppliedTactic": "have h12: S (m+1+1) +m +4 = 2* S (m+1) + 2*m +6 := by\n        simp[S]\n         linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\n⊢ (S (m + 1 + 1) + ↑m + 4) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\n⊢ (S (m + 1 + 1) + ↑m + 4) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that \\( S(m+1+1) + m + 4 = 2 \\times S(m+1) + 2 \\times m + 6 \\)."
+  },
+  {
+    "AppliedTactic": "simp[S ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\n⊢ S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\n⊢ 2 * S (m + 1) + (↑m + 1) + 1 + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By simplifying the expression, [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By simplifying the expression, proving that the sum of the value assigned by \\(S\\) at \\(m+2\\) and \\(m\\) plus 4 equals twice the value assigned by \\(S\\) at \\(m+1\\) plus twice \\(m\\) plus 6 becomes proving that twice the value assigned by \\(S\\) at \\(m+1\\) plus \\(m+1\\) plus 1 plus \\(m\\) plus 4 equals twice the value assigned by \\(S\\) at \\(m+1\\) plus twice \\(m\\) plus 6."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\n⊢ 2 * S (m + 1) + (↑m + 1) + 1 + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the equation \\( 2 \\cdot S(m + 1) + (m + 1) + 1 + (m + 4) = 2 \\cdot S(m + 1) + 2m + 6 \\) holds by the given assumptions, the proof is complete."
+  },
+  {
+    "AppliedTactic": "rw[h12 ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\n⊢ (S (m + 1 + 1) + ↑m + 4) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\n⊢ (2 * S (m + 1) + 2 * ↑m + 6) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the assumption that the sum of the function values plus a linear term equals twice another function value plus twice the index plus a constant, the goal of proving the ratio of this sum to a certain difference plus one equals two becomes proving the ratio of twice the function value plus twice the index plus six to the same denominator equals two."
+  },
+  {
+    "AppliedTactic": "have h13: S (m + 1 + 1) - S (m + 1) + 1 = S (m+1) +m + 3:= by\n        simp[S]\n         linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\n⊢ (2 * S (m + 1) + 2 * ↑m + 6) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\n⊢ (2 * S (m + 1) + 2 * ↑m + 6) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the expression obtained by subtracting the value assigned to \\( m + 1 \\) from the value assigned to \\( m + 1 + 1 \\), then adding 1, equals the value assigned to \\( m + 1 \\) plus \\( m \\) plus 3."
+  },
+  {
+    "AppliedTactic": "simp[S ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\n⊢ S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\n⊢ 2 * S (m + 1) + (↑m + 1) + 1 - S (m + 1) + 1 = S (m + 1) + ↑m + 3",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By simplifying the expression, [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By simplifying the expression, the goal of proving that the difference between the values of the function at \\( m+2 \\) and \\( m+1 \\) plus one equals the value at \\( m+1 \\) plus \\( m+1 \\) plus three is transformed into proving that twice the value of the function at \\( m+1 \\) plus \\( m+1 \\) plus one minus the value at \\( m+1 \\) plus one equals the value at \\( m+1 \\) plus \\( m+1 \\) plus three."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\n⊢ 2 * S (m + 1) + (↑m + 1) + 1 - S (m + 1) + 1 = S (m + 1) + ↑m + 3",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the equality \\( 2 \\cdot S(m + 1) + (m + 1) + 1 - S(m + 1) + 1 = S(m + 1) + m + 3 \\) cannot be false given the previous assumptions and definitions, this completes the proof."
+  },
+  {
+    "AppliedTactic": "rw[h13 ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\n⊢ (2 * S (m + 1) + 2 * ↑m + 6) / (S (m + 1 + 1) - S (m + 1) + 1) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\n⊢ (2 * S (m + 1) + 2 * ↑m + 6) / (S (m + 1) + ↑m + 3) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the assumption that the difference between the values of the function \\( S \\) at \\( m + 1 + 1 \\) and \\( m + 1 \\) plus one equals the value of the function \\( S \\) at \\( m + 1 \\) plus \\( m + 3 \\), the goal of proving that the quotient of \\( 2 \\) times the value of \\( S \\) at \\( m + 1 \\) plus twice \\( m \\) plus \\( 6 \\) divided by the difference between the values of \\( S \\) at \\( m + 1 + 1 \\) and \\( m + 1 \\) plus one equals \\( 2 \\) becomes the goal of proving that the quotient of \\( 2 \\) times the value of \\( S \\) at \\( m + 1 \\) plus twice \\( m \\) plus \\( 6 \\) divided by the value of \\( S \\) at \\( m + 1 \\) plus \\( m + 3 \\) equals \\( 2 \\)."
+  },
+  {
+    "AppliedTactic": "have h14: 2* S (m+1) + 2*m +6 = 2*(S (m+1) +m + 3):=by  linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\n⊢ (2 * S (m + 1) + 2 * ↑m + 6) / (S (m + 1) + ↑m + 3) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\n⊢ (2 * S (m + 1) + 2 * ↑m + 6) / (S (m + 1) + ↑m + 3) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that \\(2 \\times S(m+1) + 2 \\times m + 6 = 2 \\times (S(m+1) + m + 3)\\)."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\n⊢ 2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the equation \\( 2 \\cdot S(m + 1) + 2m + 6 = 2 \\cdot (S(m + 1) + m + 3) \\) holds, the proof is complete."
+  },
+  {
+    "AppliedTactic": "rw[h14 ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\n⊢ (2 * S (m + 1) + 2 * ↑m + 6) / (S (m + 1) + ↑m + 3) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\n⊢ 2 * (S (m + 1) + ↑m + 3) / (S (m + 1) + ↑m + 3) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the assumption that twice the sum of \\( S(m+1) \\) and \\( m+3 \\) equals the expression \\( 2 \\cdot S(m+1) + 2 \\cdot m + 6 \\), the goal of proving that the fraction with numerator \\( 2 \\cdot S(m+1) + 2 \\cdot m + 6 \\) and denominator \\( S(m+1) + m + 3 \\) equals 2 becomes proving that the fraction with numerator \\( 2 \\cdot (S(m+1) + m + 3) \\) and denominator \\( S(m+1) + m + 3 \\) equals 2."
+  },
+  {
+    "AppliedTactic": "have h15: S (m+1) +m + 3≠ 0:=by\n        have h16: S (m+1) ≥0 :=by\n          have h17: 0≤m + 1:=by\n            linarith\n          exact S_zero (m+1) h17\n         linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\n⊢ 2 * (S (m + 1) + ↑m + 3) / (S (m + 1) + ↑m + 3) = 2",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\nh15 :  S (m + 1) + ↑m + 3 ≠ 0\n⊢ 2 * (S (m + 1) + ↑m + 3) / (S (m + 1) + ↑m + 3) = 2",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S_zero : For every natural number, the function assigns a value that is greater than or equal to zero."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that \\( S(m+1) + m + 3 \\) is not equal to zero by first establishing that \\( S(m+1) \\) is nonnegative using the fact that \\( m+1 \\) is at least zero, and then applying this to conclude the nonzero property."
+  },
+  {
+    "AppliedTactic": "have h16: S (m+1) ≥0 :=by\n          have h17: 0≤m + 1:=by\n            linarith\n          exact S_zero (m+1)  h17 ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\n⊢ S (m + 1) + ↑m + 3 ≠ 0",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\nh16 :  S (m + 1) ≥ 0\n⊢ S (m + 1) + ↑m + 3 ≠ 0",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S_zero : For every natural number, the function assigns a value that is greater than or equal to zero."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the value assigned by the function \\( S \\) to \\( m + 1 \\) is greater than or equal to zero."
+  },
+  {
+    "AppliedTactic": "have h17: 0≤m + 1:=by\n             linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\n⊢ S (m + 1) ≥ 0",
+    "GoalsAfter": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\nh17 :  0 ≤ m + 1\n⊢ S (m + 1) ≥ 0",
+    "GivenPremises": [],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that zero is less than or equal to \\( m + 1 \\)."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\n⊢ 0 ≤ m + 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the assumption that \\( m + 1 \\) is nonnegative conflicts with the goal requiring \\( 0 \\leq m + 1 \\), this leads to a contradiction. Therefore, we complete the proof."
+  },
+  {
+    "AppliedTactic": "exact S_zero (m+1)  h17 ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\nh17 :  0 ≤ m + 1\n⊢ S (m + 1) ≥ 0",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "S_zero : For every natural number, the function assigns a value that is greater than or equal to zero."
+    ],
+    "Template": "The proof is completed from the theorem(s) and assumption(s) that [theorems] and [assumptions].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[theorems]": "This token appears in templates for tactics that may use definitions or theorems listed in *Using Definitions and Theorems*. Replace it with a explanation or a mathematical reference to each definition or theorem used. If multiple theorems are used, include explanations for all of them."
+    },
+    "Result": "The proof is completed from the fact that the function assigns a value greater than or equal to zero for every natural number and the assumption that \\( m + 1 \\) is nonnegative."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  1 ≤ m + 1 → (a (m + 1 + 1) + 1) / (a (m + 1) + 1) = 2\nhn :  1 ≤ m + 1 + 1\nh7 :  a (m + 1 + 1 + 1) = S (m + 1 + 1 + 1) - S (m + 1 + 1)\nh8 :  a (m + 1 + 1) = S (m + 1 + 1) - S (m + 1)\nh9 :  S (m + 1 + 1 + 1) = 2 * S (m + 1 + 1) + ↑m + 1 + 1 + 1\nh10 :  S (m + 1 + 1) = 2 * S (m + 1) + ↑m + 1 + 1\nh11 :  S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1 = S (m + 1 + 1) + ↑m + 4\nh12 :  S (m + 1 + 1) + ↑m + 4 = 2 * S (m + 1) + 2 * ↑m + 6\nh13 :  S (m + 1 + 1) - S (m + 1) + 1 = S (m + 1) + ↑m + 3\nh14 :  2 * S (m + 1) + 2 * ↑m + 6 = 2 * (S (m + 1) + ↑m + 3)\nh16 :  S (m + 1) ≥ 0\n⊢ S (m + 1) + ↑m + 3 ≠ 0",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the assumption that \\( S(m+1) + m + 3 = 0 \\) contradicts the fact that \\( S(m+1) \\geq 0 \\), this leads to a contradiction. Therefore, we complete the proof."
+  }
+]

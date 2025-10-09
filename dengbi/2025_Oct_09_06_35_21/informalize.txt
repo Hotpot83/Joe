@@ -1,0 +1,347 @@
+[appliedTactic]
+induction n with
+  | zero =>
+    contradiction
+  | succ n ih =>
+    match n with
+    | 0 =>
+      have h1: a 1 = 1 := by simp[a]
+      have h2: S 1= 1 := by simp[S]
+      have h3: S 2= 4:=by
+        have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S]
+        linarith
+      have h5 : a 2=3 :=by
+        have h6: a 2= S 2 - S 1 := by simp[a]
+        linarith
+      rw[h1]
+      rw[h5]
+      norm_num
+    | m+1 =>
+      have h7:a (m+1+1+1)= S (m+1+1+1) - S (m+1+1) :=rfl
+      have h8:a (m+1+1)= S (m+1+1)- S (m+1):=rfl
+      rw[h7]
+      rw[h8]
+      have h9: S (m+1+1+1) = 2* S (m+1+1) + m+1+1 +1 := by
+        simp [S]
+        linarith
+      have h10: S (m+1+1) = 2* S (m+1) + m+1 +1 := by
+        simp [S]
+        linarith
+      have h11:S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1= S (m+1+1) +m +4 :=by
+        simp[S]
+        linarith
+      rw[h11]
+      have h12: S (m+1+1) +m +4 = 2* S (m+1) + 2*m +6 := by
+        simp[S]
+        linarith
+      rw[h12]
+      have h13: S (m + 1 + 1) - S (m + 1) + 1 = S (m+1) +m + 3:= by
+        simp[S]
+        linarith
+      rw[h13]
+      have h14: 2* S (m+1) + 2*m +6 = 2*(S (m+1) +m + 3):=by linarith
+      rw[h14]
+      have h15: S (m+1) +m + 3≠ 0:=by
+        have h16: S (m+1) ≥0 :=by
+          have h17: 0≤m + 1:=by
+            linarith
+          exact S_zero (m+1) h17
+        linarith
+      field_simp [h15 ] 
+[answer]
+Prove that the given ratio involving the function \( a \) equals 2 for all natural numbers \( n \) greater than or equal to 1 by using mathematical induction on \( n \).
+[appliedTactic]
+ contradiction 
+[answer]
+Since the inequality \(1 \leq 0\) cannot hold, this leads to a contradiction. Therefore, we complete the proof.
+[appliedTactic]
+match n with
+    | 0 =>
+      have h1: a 1 = 1 := by simp[a]
+      have h2: S 1= 1 := by simp[S]
+      have h3: S 2= 4:=by
+        have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S]
+        linarith
+      have h5 : a 2=3 :=by
+        have h6: a 2= S 2 - S 1 := by simp[a]
+        linarith
+      rw[h1]
+      rw[h5]
+      norm_num
+    | m+1 =>
+      have h7:a (m+1+1+1)= S (m+1+1+1) - S (m+1+1) :=rfl
+      have h8:a (m+1+1)= S (m+1+1)- S (m+1):=rfl
+      rw[h7]
+      rw[h8]
+      have h9: S (m+1+1+1) = 2* S (m+1+1) + m+1+1 +1 := by
+        simp [S]
+        linarith
+      have h10: S (m+1+1) = 2* S (m+1) + m+1 +1 := by
+        simp [S]
+        linarith
+      have h11:S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1= S (m+1+1) +m +4 :=by
+        simp[S]
+        linarith
+      rw[h11]
+      have h12: S (m+1+1) +m +4 = 2* S (m+1) + 2*m +6 := by
+        simp[S]
+        linarith
+      rw[h12]
+      have h13: S (m + 1 + 1) - S (m + 1) + 1 = S (m+1) +m + 3:= by
+        simp[S]
+        linarith
+      rw[h13]
+      have h14: 2* S (m+1) + 2*m +6 = 2*(S (m+1) +m + 3):=by linarith
+      rw[h14]
+      have h15: S (m+1) +m + 3≠ 0:=by
+        have h16: S (m+1) ≥0 :=by
+          have h17: 0≤m + 1:=by
+            linarith
+          exact S_zero (m+1) h17
+        linarith
+      field_simp [h15 ] 
+[answer]
+Show that the value of the function \( a \) at 1 is equal to 1.
+[appliedTactic]
+have h1: a 1 = 1 := by simp[a]
+      have h2: S 1= 1 := by simp[S]
+      have h3: S 2= 4:=by
+        have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S]
+        linarith
+      have h5 : a 2=3 :=by
+        have h6: a 2= S 2 - S 1 := by simp[a]
+        linarith
+      rw[h1]
+      rw[h5]
+       norm_num 
+[answer]
+The statement that the value of the function \(a\) at 1 is equal to 1 is proved straightforward.
+[appliedTactic]
+have h1: a 1 = 1 := by simp[a ] 
+[answer]
+Show that the value assigned by the function \( S \) at 1 is equal to 1.
+[appliedTactic]
+simp[a ] 
+[answer]
+The statement that the value of the function \( S \) at 1 equals 1 is proved straightforward.
+[appliedTactic]
+have h2: S 1= 1 := by simp[S ] 
+[answer]
+Show that the value assigned by the function \( S \) at 2 is equal to 4.
+[appliedTactic]
+simp[S ] 
+[answer]
+Show that \( S(2) = 2 \times S(1) + 1 + 1 \).
+[appliedTactic]
+have h3: S 2= 4:=by
+        have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S]
+         linarith 
+[answer]
+The equality expressing the value of the function at 2 in terms of its value at 1 is proved straightforward.
+[appliedTactic]
+have h4 : S 2 = 2 * S (1) + 1 + 1 :=by simp[S ] 
+[answer]
+Since the assumptions imply that \( S_2 = 2 \times S_1 + 1 + 1 \) and \( S_2 = 4 \), and given \( S_1 = 1 \), these conditions together confirm that \( S_2 = 4 \), thereby completing the proof.
+[appliedTactic]
+simp[S ] 
+[answer]
+Show that the value of the function at 2 is equal to 3.
+[appliedTactic]
+ linarith 
+[answer]
+Show that the value of the function \( a \) at 2 equals the difference between the values of the function \( S \) at 2 and 1.
+[appliedTactic]
+have h5 : a 2=3 :=by
+        have h6: a 2= S 2 - S 1 := by simp[a]
+         linarith 
+[answer]
+The equality stating that the value of the function at 2 equals the difference between the values of the second and first terms of the sequence is proved straightforward.
+[appliedTactic]
+have h6: a 2= S 2 - S 1 := by simp[a ] 
+[answer]
+Since the assumptions imply \( a_2 = 3 \) and the given definitions and equalities confirm this value, the goal is achieved and the proof is complete.
+[appliedTactic]
+simp[a ] 
+[answer]
+By using the assumption that the value of the function \( a \) at 1 is 1, the goal of proving that the ratio \(\frac{a(0 + 1 + 1) + 1}{a(0 + 1) + 1}\) equals 2 becomes the goal of proving that the ratio \(\frac{a(0 + 1 + 1) + 1}{1 + 1}\) equals 2.
+[appliedTactic]
+ linarith 
+[answer]
+By using the assumption that the value of the function at 2 is 3, the goal of proving that the fraction with numerator \( a(0+1+1) + 1 \) and denominator \( 1 + 1 \) equals 2 becomes the goal of proving that the fraction with numerator \( 3 + 1 \) and denominator \( 1 + 1 \) equals 2.
+[appliedTactic]
+rw[h1 ] 
+[answer]
+It is clear that \(\frac{3 + 1}{1 + 1} = 2\).
+[appliedTactic]
+rw[h5 ] 
+[answer]
+Show that the value of the function \( a \) at \( m+3 \) is equal to the difference between the function \( S \) evaluated at \( m+3 \) and at \( m+2 \). This follows directly from the definition of equality, as the expression is true by reflexivity.
+[appliedTactic]
+ norm_num 
+[answer]
+Show that the value of \( a \) at \( m+1+1 \) is equal to the difference between the function \( S \) evaluated at \( m+1+1 \) and at \( m+1 \). This follows directly from the definition of equality, as the two sides are identical by construction.
+[appliedTactic]
+have h7:a (m+1+1+1)= S (m+1+1+1) - S (m+1+1) :=rfl
+      have h8:a (m+1+1)= S (m+1+1)- S (m+1):=rfl
+      rw[h7]
+      rw[h8]
+      have h9: S (m+1+1+1) = 2* S (m+1+1) + m+1+1 +1 := by
+        simp [S]
+        linarith
+      have h10: S (m+1+1) = 2* S (m+1) + m+1 +1 := by
+        simp [S]
+        linarith
+      have h11:S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1= S (m+1+1) +m +4 :=by
+        simp[S]
+        linarith
+      rw[h11]
+      have h12: S (m+1+1) +m +4 = 2* S (m+1) + 2*m +6 := by
+        simp[S]
+        linarith
+      rw[h12]
+      have h13: S (m + 1 + 1) - S (m + 1) + 1 = S (m+1) +m + 3:= by
+        simp[S]
+        linarith
+      rw[h13]
+      have h14: 2* S (m+1) + 2*m +6 = 2*(S (m+1) +m + 3):=by linarith
+      rw[h14]
+      have h15: S (m+1) +m + 3≠ 0:=by
+        have h16: S (m+1) ≥0 :=by
+          have h17: 0≤m + 1:=by
+            linarith
+          exact S_zero (m+1) h17
+        linarith
+      field_simp [h15 ] 
+[answer]
+By using the assumption that the value of the function at \( m + 1 + 1 + 1 \) equals the difference between the values of \( S \) at \( m + 1 + 1 + 1 \) and \( m + 1 + 1 \), the goal of proving that the ratio of the function at \( m + 1 + 1 + 1 \) plus one to the function at \( m + 1 + 1 \) plus one equals two becomes the goal of proving that the ratio of the difference between \( S \) at \( m + 1 + 1 + 1 \) and \( m + 1 + 1 \) plus one to the function at \( m + 1 + 1 \) plus one equals two.
+[appliedTactic]
+have h7:a (m+1+1+1)= S (m+1+1+1) - S (m+1+1) := rfl 
+[answer]
+By using the assumption that the value of the function \( a \) at \( m + 2 \) equals the difference between the values of the function \( S \) at \( m + 2 \) and \( m + 1 \), the goal of proving the fraction with numerator \( S(m + 3) - S(m + 2) + 1 \) and denominator \( a(m + 2) + 1 \) equals 2 becomes the goal of proving the fraction with numerator \( S(m + 3) - S(m + 2) + 1 \) and denominator \( S(m + 2) - S(m + 1) + 1 \) equals 2.
+[appliedTactic]
+have h8:a (m+1+1)= S (m+1+1)- S (m+1):= rfl 
+[answer]
+Show that \( S(m + 1 + 1 + 1) = 2 \times S(m + 1 + 1) + m + 1 + 1 + 1 \).
+[appliedTactic]
+rw[h7 ] 
+[answer]
+By simplifying the expression, the goal of proving that the value of the function \( S \) at \( m + 3 \) equals twice the value of \( S \) at \( m + 2 \) plus \( m + 3 \) is transformed into proving that twice the quantity of twice the value of \( S \) at \( m + 1 \) plus \( m + 2 \) equals itself plus \( m + 3 \).
+[appliedTactic]
+rw[h8 ] 
+[answer]
+Since the expressions \( 2 \times (2 \times S(m + 1) + (m + 1) + 1) + (m + 2) \) and \( 2 \times (2 \times S(m + 1) + (m + 1) + 1) + m + 1 + 1 \) are equal, the equality holds and the proof is complete.
+[appliedTactic]
+have h9: S (m+1+1+1) = 2* S (m+1+1) + m+1+1 +1 := by
+        simp [S]
+         linarith 
+[answer]
+Show that the value of the function \( S \) at \( m + 2 \) equals twice the value of \( S \) at \( m + 1 \) plus \( m + 2 \).
+[appliedTactic]
+simp [S ] 
+[answer]
+By simplifying the expression, the goal of proving that the value assigned by the function \( S \) at \( m + 2 \) equals twice the value assigned by \( S \) at \( m + 1 \) plus \( m + 2 \) is transformed into proving that twice the value assigned by \( S \) at \( m + 1 \) plus \( m + 1 \) equals twice the value assigned by \( S \) at \( m + 1 \) plus \( m + 1 \).
+[appliedTactic]
+ linarith 
+[answer]
+Since the equality \( 2 \cdot S(m + 1) + (m + 1) = 2 \cdot S(m + 1) + (m + 1) \) must hold, the proof is complete.
+[appliedTactic]
+have h10: S (m+1+1) = 2* S (m+1) + m+1 +1 := by
+        simp [S]
+         linarith 
+[answer]
+Show that the expression obtained by subtracting the value assigned to \( m + 1 + 1 \) from the value assigned to \( m + 1 + 1 + 1 \), then adding 1, equals the value assigned to \( m + 1 + 1 \) plus \( m \) plus 4.
+[appliedTactic]
+simp [S ] 
+[answer]
+By simplifying the expression, proving that the difference between the values of the function \( S \) at \( m+3 \) and \( m+2 \) plus one equals the value of \( S \) at \( m+2 \) plus \( m+4 \) is transformed into proving a more explicit arithmetic expression involving multiples and sums of values of \( S \) at \( m+1 \) and \( m+2 \) along with linear terms in \( m \).
+[appliedTactic]
+ linarith 
+[answer]
+The equality involving the expressions with \( S(m+1) \) and \( m \) cannot be satisfied as stated, so the proof is complete.
+[appliedTactic]
+have h11:S (m + 1 + 1 + 1) - S (m + 1 + 1) + 1= S (m+1+1) +m +4 :=by
+        simp[S]
+         linarith 
+[answer]
+By using the assumption that the expression \( S(m + 1 + 1 + 1) - S(m + 1 + 1) + 1 \) equals \( S(m + 1 + 1) + m + 4 \), the goal of proving that the ratio of \( S(m + 1 + 1 + 1) - S(m + 1 + 1) + 1 \) to \( S(m + 1 + 1) - S(m + 1) + 1 \) equals 2 becomes the goal of proving that the ratio of \( S(m + 1 + 1) + m + 4 \) to \( S(m + 1 + 1) - S(m + 1) + 1 \) equals 2.
+[appliedTactic]
+simp[S ] 
+[answer]
+Show that \( S(m+1+1) + m + 4 = 2 \times S(m+1) + 2 \times m + 6 \).
+[appliedTactic]
+ linarith 
+[answer]
+By simplifying the expression, proving that the sum of the value assigned by \(S\) at \(m+2\) and \(m\) plus 4 equals twice the value assigned by \(S\) at \(m+1\) plus twice \(m\) plus 6 becomes proving that twice the value assigned by \(S\) at \(m+1\) plus \(m+1\) plus 1 plus \(m\) plus 4 equals twice the value assigned by \(S\) at \(m+1\) plus twice \(m\) plus 6.
+[appliedTactic]
+rw[h11 ] 
+[answer]
+Since the equation \( 2 \cdot S(m + 1) + (m + 1) + 1 + (m + 4) = 2 \cdot S(m + 1) + 2m + 6 \) holds by the given assumptions, the proof is complete.
+[appliedTactic]
+have h12: S (m+1+1) +m +4 = 2* S (m+1) + 2*m +6 := by
+        simp[S]
+         linarith 
+[answer]
+By using the assumption that the sum of the function values plus a linear term equals twice another function value plus twice the index plus a constant, the goal of proving the ratio of this sum to a certain difference plus one equals two becomes proving the ratio of twice the function value plus twice the index plus six to the same denominator equals two.
+[appliedTactic]
+simp[S ] 
+[answer]
+Show that the expression obtained by subtracting the value assigned to \( m + 1 \) from the value assigned to \( m + 1 + 1 \), then adding 1, equals the value assigned to \( m + 1 \) plus \( m \) plus 3.
+[appliedTactic]
+ linarith 
+[answer]
+By simplifying the expression, the goal of proving that the difference between the values of the function at \( m+2 \) and \( m+1 \) plus one equals the value at \( m+1 \) plus \( m+1 \) plus three is transformed into proving that twice the value of the function at \( m+1 \) plus \( m+1 \) plus one minus the value at \( m+1 \) plus one equals the value at \( m+1 \) plus \( m+1 \) plus three.
+[appliedTactic]
+rw[h12 ] 
+[answer]
+Since the equality \( 2 \cdot S(m + 1) + (m + 1) + 1 - S(m + 1) + 1 = S(m + 1) + m + 3 \) cannot be false given the previous assumptions and definitions, this completes the proof.
+[appliedTactic]
+have h13: S (m + 1 + 1) - S (m + 1) + 1 = S (m+1) +m + 3:= by
+        simp[S]
+         linarith 
+[answer]
+By using the assumption that the difference between the values of the function \( S \) at \( m + 1 + 1 \) and \( m + 1 \) plus one equals the value of the function \( S \) at \( m + 1 \) plus \( m + 3 \), the goal of proving that the quotient of \( 2 \) times the value of \( S \) at \( m + 1 \) plus twice \( m \) plus \( 6 \) divided by the difference between the values of \( S \) at \( m + 1 + 1 \) and \( m + 1 \) plus one equals \( 2 \) becomes the goal of proving that the quotient of \( 2 \) times the value of \( S \) at \( m + 1 \) plus twice \( m \) plus \( 6 \) divided by the value of \( S \) at \( m + 1 \) plus \( m + 3 \) equals \( 2 \).
+[appliedTactic]
+simp[S ] 
+[answer]
+Show that \(2 \times S(m+1) + 2 \times m + 6 = 2 \times (S(m+1) + m + 3)\).
+[appliedTactic]
+ linarith 
+[answer]
+Since the equation \( 2 \cdot S(m + 1) + 2m + 6 = 2 \cdot (S(m + 1) + m + 3) \) holds, the proof is complete.
+[appliedTactic]
+rw[h13 ] 
+[answer]
+By using the assumption that twice the sum of \( S(m+1) \) and \( m+3 \) equals the expression \( 2 \cdot S(m+1) + 2 \cdot m + 6 \), the goal of proving that the fraction with numerator \( 2 \cdot S(m+1) + 2 \cdot m + 6 \) and denominator \( S(m+1) + m + 3 \) equals 2 becomes proving that the fraction with numerator \( 2 \cdot (S(m+1) + m + 3) \) and denominator \( S(m+1) + m + 3 \) equals 2.
+[appliedTactic]
+have h14: 2* S (m+1) + 2*m +6 = 2*(S (m+1) +m + 3):=by  linarith 
+[answer]
+Show that \( S(m+1) + m + 3 \) is not equal to zero by first establishing that \( S(m+1) \) is nonnegative using the fact that \( m+1 \) is at least zero, and then applying this to conclude the nonzero property.
+[appliedTactic]
+ linarith 
+[answer]
+Show that the value assigned by the function \( S \) to \( m + 1 \) is greater than or equal to zero.
+[appliedTactic]
+rw[h14 ] 
+[answer]
+Show that zero is less than or equal to \( m + 1 \).
+[appliedTactic]
+have h15: S (m+1) +m + 3≠ 0:=by
+        have h16: S (m+1) ≥0 :=by
+          have h17: 0≤m + 1:=by
+            linarith
+          exact S_zero (m+1) h17
+         linarith 
+[answer]
+Since the assumption that \( m + 1 \) is nonnegative conflicts with the goal requiring \( 0 \leq m + 1 \), this leads to a contradiction. Therefore, we complete the proof.
+[appliedTactic]
+have h16: S (m+1) ≥0 :=by
+          have h17: 0≤m + 1:=by
+            linarith
+          exact S_zero (m+1)  h17 
+[answer]
+The proof is completed from the fact that the function assigns a value greater than or equal to zero for every natural number and the assumption that \( m + 1 \) is nonnegative.
+[appliedTactic]
+have h17: 0≤m + 1:=by
+             linarith 
+[answer]
+Since the assumption that \( S(m+1) + m + 3 = 0 \) contradicts the fact that \( S(m+1) \geq 0 \), this leads to a contradiction. Therefore, we complete the proof.

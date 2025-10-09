@@ -1,0 +1,210 @@
+[
+  {
+    "AppliedTactic": "induction n with\n    | zero =>\n      have h: S (0)=0 :=by simp[S]\n      linarith\n    | succ n ih =>\n      match n with\n      |0 =>\n       have h1: S (0 + 1) =1 := by simp[S]\n       linarith\n      |m+1  =>\n        have hm2 : 0 ≤ m + 1 := by  norm_num\n        have h2 : m+1+1 =m+2 := rfl\n        rw[h2]\n        apply ih at hm2\n        have h3: S (m+2)=2*S (m+1) +m+1+1 :=by\n          simp[S]\n          linarith\n         linarith ",
+    "GoalsBefore": "n :  ℕ\nhn :  0 ≤ n\n⊢ S n ≥ 0",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "rfl : An element is equal to itself, with an implicit argument allowing for broader applications of this concept.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Prove [goalsBefore] with mathematical induction on [existingVariable].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[existingVariable]": "This token appears in templates for tactic  that reference existing variables. Replace it with the name of the existing variable referenced in the tactic."
+    },
+    "Result": "Prove that the value assigned by the function to \\( n \\) is nonnegative for all natural numbers \\( n \\) greater than or equal to zero by using mathematical induction on \\( n \\)."
+  },
+  {
+    "AppliedTactic": "have h: S (0)=0 :=by simp[S ] ",
+    "GoalsBefore": "case zero\nhn :  0 ≤ 0\n⊢ S 0 ≥ 0",
+    "GoalsAfter": "case zero\nhn :  0 ≤ 0\nh :  S 0 = 0\n⊢ S 0 ≥ 0",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the value of the function \\( S \\) at zero is equal to zero."
+  },
+  {
+    "AppliedTactic": "simp[S ] ",
+    "GoalsBefore": "hn :  0 ≤ 0\n⊢ S 0 = 0",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "[goalsBefore] is proved straightforward.",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied."
+    },
+    "Result": "The equality stating that the function \\( S \\) evaluated at zero equals zero is proved straightforward."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "case zero\nhn :  0 ≤ 0\nh :  S 0 = 0\n⊢ S 0 ≥ 0",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the assumption that the successor of zero equals zero contradicts the requirement that the successor of zero is at least zero, this leads to a contradiction. Therefore, we complete the proof."
+  },
+  {
+    "AppliedTactic": "have h1: S (0 + 1) =1 := by simp[S ] ",
+    "GoalsBefore": "n :  ℕ\nih :  0 ≤ 0 → S 0 ≥ 0\nhn :  0 ≤ 0 + 1\n⊢ S (0 + 1) ≥ 0",
+    "GoalsAfter": "n :  ℕ\nih :  0 ≤ 0 → S 0 ≥ 0\nhn :  0 ≤ 0 + 1\nh1 :  S (0 + 1) = 1\n⊢ S (0 + 1) ≥ 0",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that the successor of one equals one."
+  },
+  {
+    "AppliedTactic": "simp[S ] ",
+    "GoalsBefore": "n :  ℕ\nih :  0 ≤ 0 → S 0 ≥ 0\nhn :  0 ≤ 0 + 1\n⊢ S (0 + 1) = 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "[goalsBefore] is proved straightforward.",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied."
+    },
+    "Result": "The equality stating that the value of the function \\( S \\) at \\( 1 \\) is \\( 1 \\) is proved straightforward."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n :  ℕ\nih :  0 ≤ 0 → S 0 ≥ 0\nhn :  0 ≤ 0 + 1\nh1 :  S (0 + 1) = 1\n⊢ S (0 + 1) ≥ 0",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the assumption \\( 0 \\leq 0 + 1 \\) and the goal \\( S(0 + 1) \\geq 0 \\) are consistent and directly imply the goal, the proof is completed."
+  },
+  {
+    "AppliedTactic": "have hm2 : 0 ≤ m + 1 := by   norm_num ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\n⊢ S (m + 1 + 1) ≥ 0",
+    "GoalsAfter": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nhm2 :  0 ≤ m + 1\n⊢ S (m + 1 + 1) ≥ 0",
+    "GivenPremises": [],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that \\( 0 \\leq m + 1 \\)."
+  },
+  {
+    "AppliedTactic": " norm_num ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\n⊢ 0 ≤ m + 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "It is clear that [goalsBefore].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied."
+    },
+    "Result": "It is clear that \\( 0 \\leq m + 1 \\)."
+  },
+  {
+    "AppliedTactic": "have h2 : m+1+1 =m+2 :=  rfl ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nhm2 :  0 ≤ m + 1\n⊢ S (m + 1 + 1) ≥ 0",
+    "GoalsAfter": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nhm2 :  0 ≤ m + 1\nh2 :  m + 1 + 1 = m + 2\n⊢ S (m + 1 + 1) ≥ 0",
+    "GivenPremises": [
+      "rfl : An element is equal to itself, with an implicit argument allowing for broader applications of this concept."
+    ],
+    "Template": "Show that [statement]. This can be proved by [proof].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic.",
+      "[proof]": "This token appears in templates for a tactic that simultaneously provides a proposition (subgoal) to be proven and its proof. Replace it with a explanation of a proof to the relevant proof by checking the Applied Tactic. Additionally, if any theorems listed in Using Definitions and Theorems are used, be sure to include an explanation or a mathematical reference of those theorems in the text. If multiple theorems are used, include explanations for all of them."
+    },
+    "Result": "Show that \\( m + 1 + 1 = m + 2 \\). This follows directly from the definition of addition and the fact that adding one twice is the same as adding two."
+  },
+  {
+    "AppliedTactic": "rw[h2 ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nhm2 :  0 ≤ m + 1\nh2 :  m + 1 + 1 = m + 2\n⊢ S (m + 1 + 1) ≥ 0",
+    "GoalsAfter": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nhm2 :  0 ≤ m + 1\nh2 :  m + 1 + 1 = m + 2\n⊢ S (m + 2) ≥ 0",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By using [assumptions], [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By using the equality that \\( m + 1 + 1 \\) is equal to \\( m + 2 \\), the goal of proving that the successor of \\( m + 1 + 1 \\) is nonnegative becomes the goal of proving that the successor of \\( m + 2 \\) is nonnegative."
+  },
+  {
+    "AppliedTactic": "apply ih at  hm2 ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nhm2 :  0 ≤ m + 1\nh2 :  m + 1 + 1 = m + 2\n⊢ S (m + 2) ≥ 0",
+    "GoalsAfter": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nh2 :  m + 1 + 1 = m + 2\nhm2 :  S (m + 1) ≥ 0\n⊢ S (m + 2) ≥ 0",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "From [assumptions],  in order to establish [goalsBefore], it suffices to prove [goalsAfter].",
+    "TokenInfos": {
+      "[assumptions]": "This token appears in templates for tactics that may use assumptions from the proof state given in *Hypothesis And Goals Before Tactic Application*. Replace it with a explanation or a mathematical reference to each assumption used.If multiple theorems are used, include explanations for all of them.",
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "From the assumption that if a certain natural number is nonnegative then its successor is also nonnegative, in order to establish that the successor of \\( m + 2 \\) is nonnegative, it suffices to prove that the successor of \\( m + 1 \\) is nonnegative."
+  },
+  {
+    "AppliedTactic": "have h3: S (m+2)=2*S (m+1) +m+1+1 :=by\n          simp[S]\n           linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nh2 :  m + 1 + 1 = m + 2\nhm2 :  S (m + 1) ≥ 0\n⊢ S (m + 2) ≥ 0",
+    "GoalsAfter": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nh2 :  m + 1 + 1 = m + 2\nhm2 :  S (m + 1) ≥ 0\nh3 :  S (m + 2) = 2 * S (m + 1) + ↑m + 1 + 1\n⊢ S (m + 2) ≥ 0",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "Show that [statement].",
+    "TokenInfos": {
+      "[statement]": "This token appears in templates for a tactic that provides a proposition (subgoal) to be proven. Replace it with a explanation or a mathematical reference to the relevant proposition by checking the Applied Tactic."
+    },
+    "Result": "Show that \\( S(m+2) = 2 \\times S(m+1) + m + 1 + 1 \\)."
+  },
+  {
+    "AppliedTactic": "simp[S ] ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nh2 :  m + 1 + 1 = m + 2\nhm2 :  S (m + 1) ≥ 0\n⊢ S (m + 2) = 2 * S (m + 1) + ↑m + 1 + 1",
+    "GoalsAfter": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nh2 :  m + 1 + 1 = m + 2\nhm2 :  S (m + 1) ≥ 0\n⊢ 2 * S (m + 1) + (↑m + 1) = 2 * S (m + 1) + ↑m + 1",
+    "GivenPremises": [
+      "S : A function that assigns a real number to each natural number.",
+      "S : A function that assigns a real number to each natural number."
+    ],
+    "Template": "By simplifying the expression, [goalsBefore] becomes [goalsAfter].",
+    "TokenInfos": {
+      "[goalsBefore]": "This token appears in templates for tactics that need to refer to goals in the proof state before applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals before the tactic is applied.",
+      "[goalsAfter]": "This token appears in templates for tactics that need to refer to goals in the proof state after applying the tactic. Replace it with a explanation or a mathematical reference to the relevant goals after the tactic is applied."
+    },
+    "Result": "By simplifying the expression, the goal of proving that the value of the function at \\( m + 2 \\) equals twice the value of the function at \\( m + 1 \\) plus \\( m + 1 + 1 \\) is transformed into proving that twice the value of the function at \\( m + 1 \\) plus \\( m + 1 \\) equals twice the value of the function at \\( m + 1 \\) plus \\( m + 1 \\)."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nh2 :  m + 1 + 1 = m + 2\nhm2 :  S (m + 1) ≥ 0\n⊢ 2 * S (m + 1) + (↑m + 1) = 2 * S (m + 1) + ↑m + 1",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the equality \\( 2 \\times S(m + 1) + (m + 1) = 2 \\times S(m + 1) + m + 1 \\) holds trivially by associativity and commutativity of addition, the proof is complete."
+  },
+  {
+    "AppliedTactic": " linarith ",
+    "GoalsBefore": "n m :  ℕ\nih :  0 ≤ m + 1 → S (m + 1) ≥ 0\nhn :  0 ≤ m + 1 + 1\nh2 :  m + 1 + 1 = m + 2\nhm2 :  S (m + 1) ≥ 0\nh3 :  S (m + 2) = 2 * S (m + 1) + ↑m + 1 + 1\n⊢ S (m + 2) ≥ 0",
+    "GoalsAfter": "no goals",
+    "GivenPremises": [],
+    "Template": "Since [conflictingExpressions] cannot hold simultaneously, this leads to a contradiction. Therefore, we complete the proof.",
+    "TokenInfos": {
+      "[conflictingExpressions]": "This token appears in tactic templates that demonstrate a contradiction between propositions within the assumptions or between an assumption and the proof goal. Check *Hypothesis And Goals Before Tactic Application*, extract the two or more conflicting propositions, and replace it with a brief explanation or a mathematical reference formatted in TeX to the contradictory expressions."
+    },
+    "Result": "Since the assumption that \\( S(m + 1) \\geq 0 \\) and the expression defining \\( S(m + 2) \\) as \\( 2 \\cdot S(m + 1) + m + 2 \\) imply that \\( S(m + 2) \\geq 0 \\), the goal is established and the proof is complete."
+  }
+]

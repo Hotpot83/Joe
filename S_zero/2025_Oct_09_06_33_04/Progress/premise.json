@@ -1,0 +1,32 @@
+{
+  "induction n with\n    | zero =>\n      have h: S (0)=0 :=by simp[S]\n      linarith\n    | succ n ih =>\n      match n with\n      |0 =>\n       have h1: S (0 + 1) =1 := by simp[S]\n       linarith\n      |m+1  =>\n        have hm2 : 0 ≤ m + 1 := by  norm_num\n        have h2 : m+1+1 =m+2 := rfl\n        rw[h2]\n        apply ih at hm2\n        have h3: S (m+2)=2*S (m+1) +m+1+1 :=by\n          simp[S]\n          linarith\n         linarith ": [
+    "S : A function that assigns a real number to each natural number.",
+    "rfl : An element is equal to itself, with an implicit argument allowing for broader applications of this concept.",
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h: S (0)=0 :=by simp[S ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "simp[S ] ": [
+    "S : A function that assigns a real number to each natural number.",
+    "S : A function that assigns a real number to each natural number."
+  ],
+  " linarith ": [],
+  "have h1: S (0 + 1) =1 := by simp[S ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have hm2 : 0 ≤ m + 1 := by   norm_num ": [],
+  " norm_num ": [],
+  "have h2 : m+1+1 =m+2 :=  rfl ": [
+    "rfl : An element is equal to itself, with an implicit argument allowing for broader applications of this concept."
+  ],
+  "rw[h2 ] ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "apply ih at  hm2 ": [
+    "S : A function that assigns a real number to each natural number."
+  ],
+  "have h3: S (m+2)=2*S (m+1) +m+1+1 :=by\n          simp[S]\n           linarith ": [
+    "S : A function that assigns a real number to each natural number."
+  ]
+}

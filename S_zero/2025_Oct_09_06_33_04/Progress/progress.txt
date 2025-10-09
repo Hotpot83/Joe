@@ -1,0 +1,61 @@
+[applied Tactic]
+have h: S (0)=0 :=by simp[S ] 
+
+[answer]
+We will show that the value of the function \( S \) at zero is equal to zero. This follows directly by evaluating the function \( S \) at the point zero, which yields \( S(0) = 0 \). Thus, the proposition holds straightforwardly.
+[applied Tactic]
+have h1: S (0 + 1) =1 := by simp[S ] 
+
+[answer]
+We will show that \(0 \leq 0 + 1\). Since the assumption \(0 \leq 0 + 1\) holds trivially and directly implies the goal \(S(0 + 1) \geq 0\), the proposition follows immediately. Therefore, the proof is complete.
+[applied Tactic]
+have hm2 : 0 ≤ m + 1 := by   norm_num 
+
+[answer]
+We will show that the successor of \( m + 1 + 1 \) is nonnegative. Recognizing that \( m + 1 + 1 \) equals \( m + 2 \), it suffices to prove that the successor of \( m + 2 \) is nonnegative. Given the assumption that if a natural number is nonnegative then its successor is also nonnegative, it follows that to establish the nonnegativity of the successor of \( m + 2 \), it is enough to prove that the successor of \( m + 1 \) is nonnegative. Thus, the original goal reduces naturally to demonstrating the nonnegativity of the successor of \( m + 1 \).
+[applied Tactic]
+have h3: S (m+2)=2*S (m+1) +m+1+1 :=by
+          simp[S]
+           linarith 
+
+[answer]
+We will show that if \( S(m + 1) \geq 0 \), then it follows that \( S(m + 2) \geq 0 \). To see this, note that by definition, \( S(m + 2) = 2 \cdot S(m + 1) + m + 2 \). Since \( S(m + 1) \geq 0 \) and \( m + 2 \geq 0 \) for all relevant \( m \), their linear combination \( 2 \cdot S(m + 1) + m + 2 \) must also be non-negative. Hence, \( S(m + 2) \geq 0 \), which establishes the claim and completes the proof.
+[applied Tactic]
+match n with
+      |0 =>
+       have h1: S (0 + 1) =1 := by simp[S]
+       linarith
+      |m+1  =>
+        have hm2 : 0 ≤ m + 1 := by  norm_num
+        have h2 : m+1+1 =m+2 := rfl
+        rw[h2]
+        apply ih at hm2
+        have h3: S (m+2)=2*S (m+1) +m+1+1 :=by
+          simp[S]
+          linarith
+         linarith 
+
+[answer]
+We will show that the successor of one equals one. The proof begins by observing that \(0 \leq 0 + 1\) holds trivially, which directly implies \(S(0 + 1) \geq 0\), establishing the base case immediately. Next, we note that for any natural number \(m\), \(0 \leq m + 1\) holds. By the definition of addition, \(m + 1 + 1 = m + 2\). To establish the nonnegativity of the successor of \(m + 2\), it suffices to show the nonnegativity of the successor of \(m + 1\) due to the inductive property that if a natural number is nonnegative, then so is its successor. Furthermore, we demonstrate that \(S(m + 2) = 2 \times S(m + 1) + m + 1 + 1\). Simplifying this expression reduces the goal to verifying the equality \(2 \times S(m + 1) + (m + 1) = 2 \times S(m + 1) + m + 1\), which holds trivially by the associativity and commutativity of addition. Finally, assuming \(S(m + 1) \geq 0\) and \(m + 2 \geq 0\), it follows that \(S(m + 2) = 2 \cdot S(m + 1) + m + 2\) is also nonnegative. This completes the proof that the successor of one equals one.
+[applied Tactic]
+induction n with
+    | zero =>
+      have h: S (0)=0 :=by simp[S]
+      linarith
+    | succ n ih =>
+      match n with
+      |0 =>
+       have h1: S (0 + 1) =1 := by simp[S]
+       linarith
+      |m+1  =>
+        have hm2 : 0 ≤ m + 1 := by  norm_num
+        have h2 : m+1+1 =m+2 := rfl
+        rw[h2]
+        apply ih at hm2
+        have h3: S (m+2)=2*S (m+1) +m+1+1 :=by
+          simp[S]
+          linarith
+         linarith 
+
+[answer]
+We will prove by mathematical induction on \( n \) that the value assigned by the function \( S \) at \( n \) is nonnegative for all natural numbers \( n \geq 0 \). First, for the base case \( n = 0 \), we observe that evaluating the function directly gives \( S(0) = 0 \), which is clearly nonnegative. Next, for the inductive step, assume that \( S(m+1) \geq 0 \) for some natural number \( m \). Since \( m + 2 = (m + 1) + 1 \) and addition is associative and commutative, it follows that \( S(m + 2) = 2 \cdot S(m + 1) + m + 2 \). Given the inductive hypothesis and the fact that \( m + 2 \geq 0 \), the expression \( S(m + 2) \) is also nonnegative. Thus, the proposition holds for all natural numbers \( n \geq 0 \), completing the proof.

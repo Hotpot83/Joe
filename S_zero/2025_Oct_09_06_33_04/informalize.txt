@@ -1,0 +1,103 @@
+[appliedTactic]
+induction n with
+    | zero =>
+      have h: S (0)=0 :=by simp[S]
+      linarith
+    | succ n ih =>
+      match n with
+      |0 =>
+       have h1: S (0 + 1) =1 := by simp[S]
+       linarith
+      |m+1  =>
+        have hm2 : 0 ≤ m + 1 := by  norm_num
+        have h2 : m+1+1 =m+2 := rfl
+        rw[h2]
+        apply ih at hm2
+        have h3: S (m+2)=2*S (m+1) +m+1+1 :=by
+          simp[S]
+          linarith
+         linarith 
+[answer]
+Prove that the value assigned by the function to \( n \) is nonnegative for all natural numbers \( n \) greater than or equal to zero by using mathematical induction on \( n \).
+[appliedTactic]
+have h: S (0)=0 :=by simp[S ] 
+[answer]
+Show that the value of the function \( S \) at zero is equal to zero.
+[appliedTactic]
+simp[S ] 
+[answer]
+The equality stating that the function \( S \) evaluated at zero equals zero is proved straightforward.
+[appliedTactic]
+ linarith 
+[answer]
+Since the assumption that the successor of zero equals zero contradicts the requirement that the successor of zero is at least zero, this leads to a contradiction. Therefore, we complete the proof.
+[appliedTactic]
+match n with
+      |0 =>
+       have h1: S (0 + 1) =1 := by simp[S]
+       linarith
+      |m+1  =>
+        have hm2 : 0 ≤ m + 1 := by  norm_num
+        have h2 : m+1+1 =m+2 := rfl
+        rw[h2]
+        apply ih at hm2
+        have h3: S (m+2)=2*S (m+1) +m+1+1 :=by
+          simp[S]
+          linarith
+         linarith 
+[answer]
+Show that the successor of one equals one.
+[appliedTactic]
+have h1: S (0 + 1) =1 := by simp[S]
+        linarith 
+[answer]
+The equality stating that the value of the function \( S \) at \( 1 \) is \( 1 \) is proved straightforward.
+[appliedTactic]
+have h1: S (0 + 1) =1 := by simp[S ] 
+[answer]
+Since the assumption \( 0 \leq 0 + 1 \) and the goal \( S(0 + 1) \geq 0 \) are consistent and directly imply the goal, the proof is completed.
+[appliedTactic]
+simp[S ] 
+[answer]
+Show that \( 0 \leq m + 1 \).
+[appliedTactic]
+ linarith 
+[answer]
+It is clear that \( 0 \leq m + 1 \).
+[appliedTactic]
+have hm2 : 0 ≤ m + 1 := by  norm_num
+        have h2 : m+1+1 =m+2 := rfl
+        rw[h2]
+        apply ih at hm2
+        have h3: S (m+2)=2*S (m+1) +m+1+1 :=by
+          simp[S]
+          linarith
+         linarith 
+[answer]
+Show that \( m + 1 + 1 = m + 2 \). This follows directly from the definition of addition and the fact that adding one twice is the same as adding two.
+[appliedTactic]
+have hm2 : 0 ≤ m + 1 := by   norm_num 
+[answer]
+By using the equality that \( m + 1 + 1 \) is equal to \( m + 2 \), the goal of proving that the successor of \( m + 1 + 1 \) is nonnegative becomes the goal of proving that the successor of \( m + 2 \) is nonnegative.
+[appliedTactic]
+ norm_num 
+[answer]
+From the assumption that if a certain natural number is nonnegative then its successor is also nonnegative, in order to establish that the successor of \( m + 2 \) is nonnegative, it suffices to prove that the successor of \( m + 1 \) is nonnegative.
+[appliedTactic]
+have h2 : m+1+1 =m+2 :=  rfl 
+[answer]
+Show that \( S(m+2) = 2 \times S(m+1) + m + 1 + 1 \).
+[appliedTactic]
+rw[h2 ] 
+[answer]
+By simplifying the expression, the goal of proving that the value of the function at \( m + 2 \) equals twice the value of the function at \( m + 1 \) plus \( m + 1 + 1 \) is transformed into proving that twice the value of the function at \( m + 1 \) plus \( m + 1 \) equals twice the value of the function at \( m + 1 \) plus \( m + 1 \).
+[appliedTactic]
+apply ih at  hm2 
+[answer]
+Since the equality \( 2 \times S(m + 1) + (m + 1) = 2 \times S(m + 1) + m + 1 \) holds trivially by associativity and commutativity of addition, the proof is complete.
+[appliedTactic]
+have h3: S (m+2)=2*S (m+1) +m+1+1 :=by
+          simp[S]
+           linarith 
+[answer]
+Since the assumption that \( S(m + 1) \geq 0 \) and the expression defining \( S(m + 2) \) as \( 2 \cdot S(m + 1) + m + 2 \) imply that \( S(m + 2) \geq 0 \), the goal is established and the proof is complete.
